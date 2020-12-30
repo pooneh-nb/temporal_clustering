@@ -1,0 +1,60 @@
+This code is one class with contains variables and methods:
+!! Number of de-temporal edges is less than temporal ones and the reason for this
+    is that, a particular edge can be duplicated in different snapshots
+
+member explanations:
+1. path:
+2. rank = []  list of (node, degree) sorted based on degree
+                then this WILL change to the list of nodes sorted based on degree
+3. toprank=0  the highest rank of list rank: (92,181)
+4. visited_set
+5. visited_node = []  => add nodes which their eligibility for being a core has been tested
+6. visited_edge = []
+7. eps = 0.3 => degree of similarity
+8. miu = 5  => minimum number of similar neighbors
+9. tau = 3  => minimum number of similar timestamps
+10. theta = 1
+11. sigma = {} dict: {(u,v): sigma, ... }
+12. sigma_t = {}  = > calculated sigma for each edge at timestamp t
+13. union_set = []
+14. collections = {}
+15. adj = {} dictionary of each node along with their neighbors and degree
+    {u: {v:v_deg, h:h_degree,...}
+     v: {list of v's neighbors along with their degree}
+    }
+    Finally, this will change to {node: [list of neighbors sorted based on degree]..
+                                   }
+16. subgraph = {}
+17. frquent_set = {}
+
+Methods explanation:
+
+1. tGraph(filename) call the instructor of the class to initiate members
+    in this method, these members will be initiated: rank; adj
+2. readifile.tGraph : create a temporal graph using networkx
+    edgeformat (u, v, t=timestamp)
+3. run(self, filename)
+ this will call the desired algorithm, here SCANA with defined parameters
+ to get cores
+
+4. SCANA: TSCAN-A is our improved algorithm to get stable cores
+    with all the pruning rules in Section 3
+    -- union_set gets its value as a list here
+    inside this method, check_SCANA_core will be called
+5. check_SCANA_core(u)
+    this method will check whether a node is a core or not.
+    in this method call compute_sigma_at_one_time(u,v,t)
+    members sigma and sigma_t are created in this function
+
+6. compute_sigma_at_one_time(u,v,t)
+    calculate similarity between u and v at timestamp t; eq 1 paper
+
+7. add_node_set (u)
+add u to union_set if it's not there
+
+8. cluster_SCANA_core(u)
+
+
+
+* cluster_by_cores: after calculating the cores, uses
+    StableCore for density-based clustering

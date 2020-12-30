@@ -124,3 +124,12 @@ dmypy.json
 
 #dataset
 temporal_df
+tuning/
+dbpl/dblp.xml
+chess_year
+chess_year.csv
+new_file.csv
+test_ds
+test_ds2
+weighted_chess
+weights.json

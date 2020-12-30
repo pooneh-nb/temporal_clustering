@@ -28,9 +28,10 @@ def tGraph(path):
             if G.has_edge(int(line[0]), int(line[1])):
                 if int(line[2]) not in G.edges[int(line[0]), int(line[1])]['t']:
                     G.edges[int(line[0]), int(line[1])]['t'].append(int(line[2]))
+                    G.edges[int(line[0]), int(line[1])]['w'].append(int(line[3]))
                     # print(int(line[0]), int(line[1]) ,G.edges[int(line[0]), int(line[1])])
             else:
-                G.add_edge(int(line[0]), int(line[1]), t=[int(line[2])])
+                G.add_edge(int(line[0]), int(line[1]), t=[int(line[2])], w=[int(line[3])])
     return G
 
 
@@ -52,6 +53,7 @@ def format(path):
     file_object = open(path + '.new', 'w')
     maxtime = 0
     mintime = 1000000
+    a = 0
     for line in open(path):
         if line.find('#') and line.find('%') < 0 and line != '\n':
             line = line.strip('\n').split(' ')

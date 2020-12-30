@@ -616,7 +616,7 @@ class tGraph:
 
 if __name__ == '__main__':
     # get the dataset
-    filename = "test_ds2"
+    filename = "temporal_df"
     # convert the temporal dataset separated by \t to a networkx. calculate the degree of nodes and find each
     # node's adjacency
     # !call the instructor of the class to initiate members
@@ -633,8 +633,8 @@ if __name__ == '__main__':
     #plt.show()
 
     # set parameters
-    G.eps = 0.6
-    G.tau = 3
+    G.eps = 0.5
+    G.tau = 2
     G.miu = 1
 
     print(filename, G.eps, G.tau, G.miu)
