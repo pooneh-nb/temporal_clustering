@@ -1,3 +1,5 @@
+import operator
+
 import networkx as nx
 import json
 from statistics import mean
@@ -23,19 +25,25 @@ def create_graph(path):
     return G
 
 def masure_avg_weight():
-    path = "temporal_df.csv"
+    path = "temporal_df_2016"
     FG = create_graph(path)
     #FG = nx.Graph()
     #FG.add_weighted_edges_from([(1, 2, 0.125), (1, 3, 0.75), (2, 4, 1.2), (3, 4, 0.375)])
-    wt = {}
+    degree_sequence = sorted([d for n, d in FG.degree()], reverse=True)
+    dmax = max(degree_sequence)
+    print(dmax)
 
+    wt = {}
     for n, nbrs in FG.adj.items():
         wt[n] = 0
         for nbr, eattr in nbrs.items():
             wt[n] = wt[n] + round(mean(eattr['w']), 2)
 
-    with open('weights.json', 'wt') as fp:
-        json.dump(wt, fp, indent=4)
+    weight_max = max(wt.items(), key=operator.itemgetter(1))[0]
+    print(wt[weight_max])
+
+    #with open('weights.json', 'wt') as fp:
+        #json.dump(wt, fp, indent=4)
 
 
 def weight_histogram():
@@ -51,4 +59,7 @@ def weight_histogram():
     axs.hist(weight_data, bins=10)
     plt.show()
 
-weight_histogram()
+
+
+#masure_avg_weight()
+#weight_histogram()

@@ -616,7 +616,7 @@ class tGraph:
 
 if __name__ == '__main__':
     # get the dataset
-    filename = "test_ds2"
+    filename = "temporal_df_2020"
     # convert the temporal dataset separated by \t to a networkx. calculate the degree of nodes and find each
     # node's adjacency
     # !call the instructor of the class to initiate members
@@ -630,16 +630,16 @@ if __name__ == '__main__':
     for node, deg in G.adj.items():
         degree_list.append(len(deg))
     axs.hist(degree_list, bins=10)
-    #plt.show()
+    plt.show()
 
     # set parameters
-    G.eps = 0.6
-    G.tau = 3
-    G.miu = 1
+    G.eps = 0.5
+    G.tau = 1
+    G.miu = 500
 
     print(filename, G.eps, G.tau, G.miu)
 
-    G.run(filename)
+    #G.run(filename)
     G.cluster(filename)
 
     #G.nodes_distribution_by_year()

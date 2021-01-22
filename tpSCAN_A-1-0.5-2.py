@@ -624,12 +624,12 @@ if __name__ == '__main__':
     # !rank: list of nodes sorted based on degree
     # !adj: dict {node: [list of neighbors sorted based on degree].. }
     G = tGraph(filename)
-    fig, axs = plt.subplots(1, 1, sharey=True, tight_layout=True)
+    #fig, axs = plt.subplots(1, 1, sharey=True, tight_layout=True)
     # We can set the number of bins with the `bins` kwarg
-    degree_list = []
-    for node, deg in G.adj.items():
+    #degree_list = []
+    """for node, deg in G.adj.items():
         degree_list.append(len(deg))
-    axs.hist(degree_list, bins=10)
+    axs.hist(degree_list, bins=10)"""
     #plt.show()
 
     # set parameters
@@ -637,9 +637,9 @@ if __name__ == '__main__':
     G.tau = 2
     G.miu = 1
 
-    print(filename, G.eps, G.tau, G.miu)
+    #print(filename, G.eps, G.tau, G.miu)
 
-    G.run(filename)
+    #G.run(filename)
     G.cluster(filename)
 
     #G.nodes_distribution_by_year()
